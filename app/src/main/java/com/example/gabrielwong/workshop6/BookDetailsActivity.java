@@ -9,7 +9,7 @@ import android.os.StrictMode;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class BookDetailsActivity extends Activity {
+ public class BookDetailsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
