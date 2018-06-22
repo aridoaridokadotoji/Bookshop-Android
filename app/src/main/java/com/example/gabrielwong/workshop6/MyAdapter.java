@@ -7,19 +7,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Book> {
+public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
 
     private ArrayList<Book> books;
     int resource;
 
+    private LayoutInflater mInflater;
+    private ItemFilter mFilter = new ItemFilter();
+
+    private ArrayList<Book> filteredData = null;
+
     public MyAdapter(Context context, int resource, ArrayList<Book> books) {
         super(context, resource, books);
         this.resource = resource;
+        this.filteredData = books;
         this.books = books;
+    }
+
+    @Override
+    public int getCount() {
+        return filteredData.size();
+    }
+
+    @Override
+    public Book getItem(int position) {
+        return filteredData.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -35,5 +59,46 @@ public class MyAdapter extends ArrayAdapter<Book> {
             tv.setText(b.get("Title"));
         }
         return v;
+    }
+
+    public Filter getFilter() {
+        return mFilter;
+    }
+
+    private class ItemFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            String filterString = constraint.toString().toLowerCase();
+
+            FilterResults results = new FilterResults();
+
+            final ArrayList<Book> list = books;
+            int count = list.size();
+
+            final ArrayList<Book> nlist = new ArrayList<Book>(count);
+
+            Book filterableBook;
+
+            for (int i = 0; i < count; i++) {
+                filterableBook = list.get(i);
+                if (filterableBook.get("Title").toLowerCase().contains(filterString)) {
+                    nlist.add(filterableBook);
+                }
+            }
+
+            results.values = nlist;
+            results.count = nlist.size();
+
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredData = (ArrayList<Book>) results.values;
+            notifyDataSetChanged();
+        }
+
     }
 }
