@@ -28,11 +28,11 @@ public class MyAdapter extends ArrayAdapter<Book> {
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
 
-        Book eid = books.get(position);
+        Book b = getItem(position);
 
-        if (eid != null) {
-            TextView e = (TextView) v.findViewById(R.id.TextView);
-            e.setText(eid.get("Title"));
+        if (b != null) {
+            TextView tv = (TextView) v.findViewById(R.id.TextView);
+            tv.setText(b.get("Title"));
         }
         return v;
     }
