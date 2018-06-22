@@ -14,7 +14,7 @@ public class BookDetailsActivity extends Activity {
         setContentView(R.layout.activity_book_details);
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
         Intent i = getIntent();
-        String eid = i.getStringExtra("eid");
+        String eid = i.getStringExtra("bookId");
 
 //        new AsyncTask<String, Void, Book>() {
 //            @Override

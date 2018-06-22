@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends ListActivity {
@@ -28,7 +29,7 @@ public class MainActivity extends ListActivity {
                                    int position, long id) {
         String item = (String) getListAdapter().getItem(position);
         Intent intent = new Intent(this, BookDetailsActivity.class);
-        intent.putExtra("eid", item);
+        intent.putExtra("bookId", item);
         startActivity(intent);
     }
 }

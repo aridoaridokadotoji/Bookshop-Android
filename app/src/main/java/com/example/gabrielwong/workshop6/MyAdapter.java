@@ -29,9 +29,10 @@ public class MyAdapter extends ArrayAdapter<String> {
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
         String eid = items.get(position);
+
         if (eid != null) {
             TextView e = (TextView) v.findViewById(R.id.textView);
-            e.setText(eid);
+            e.setText(Book.getTitle(eid));
             //ImageView image = (ImageView) v.findViewById(R.id.imageView2);
             //image.setImageBitmap(Employee.getPhoto(true, eid));
         }

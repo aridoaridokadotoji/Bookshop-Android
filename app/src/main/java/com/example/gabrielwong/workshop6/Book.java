@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Book extends HashMap<String, String> {
+public class Book extends HashMap<String, Object> {
 
-    final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/LoadData/";
+    final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
     //final static String imageURL = "http://172.27.240.226:8090/workhere/photo";
 
     public Book(String bookId, String title, String catId, String isbn,
@@ -35,13 +35,24 @@ public class Book extends HashMap<String, String> {
         List<String> list = new ArrayList<String>();
 
         try {
-            JSONArray b = JSONParser.getJSONArrayFromUrl(baseURL);
+            JSONArray b = JSONParser.getJSONArrayFromUrl(baseURL+"LoadData/");
             for (int i=0; i<b.length(); i++)
-                list.add(b.getJSONObject(i).getString("Title"));
+                list.add(b.getJSONObject(i).getString("BookID"));
         } catch (Exception e) {
             Log.e("Book.list()", "JSONArray error");
         }
         return(list);
+    }
+
+    public static String getTitle(String eid) {
+        try {
+            JSONArray b = JSONParser.getJSONArrayFromUrl(baseURL+"LoadSingle/"+eid);
+            JSONObject c= b.getJSONObject(0);
+            return c.getString("Title");
+        } catch (Exception e) {
+            Log.e("Book.getEmp()", "JSONArray or JSONObject error");
+        }
+        return(null);
     }
 
 /*    public static Book getEmp(String eid) {
