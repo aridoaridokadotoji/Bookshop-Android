@@ -17,8 +17,8 @@ import java.util.List;
 
 public class Book extends HashMap<String, String> {
 
-    final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
-    final static String imageURL = "http://172.17.253.129/GetFreshBooks/images";
+    final static String baseURL = "http://192.168.1.29/GetFreshBooks/Inventory/"; //TODO: Change according to server
+    final static String imageURL = "http://192.168.1.29/GetFreshBooks/images";
 
     public Book(String bookId, String title, String catId, String isbn,
                 String author, String stock, String price) {
@@ -31,13 +31,21 @@ public class Book extends HashMap<String, String> {
         put("Price", price);
     }
 
-    public static List<String> list() {
-        List<String> list = new ArrayList<String>();
+    public static ArrayList<Book> list() {
+        ArrayList<Book> list = new ArrayList<Book>();
 
         try {
             JSONArray b = JSONParser.getJSONArrayFromUrl(baseURL+"LoadData/");
             for (int i=0; i<b.length(); i++)
-                list.add(b.getJSONObject(i).getString("BookID"));
+                list.add(new Book(
+                        b.getJSONObject(i).getString("BookID"),
+                        b.getJSONObject(i).getString("Title"),
+                        b.getJSONObject(i).getString("CategoryID"),
+                        b.getJSONObject(i).getString("ISBN"),
+                        b.getJSONObject(i).getString("Author"),
+                        b.getJSONObject(i).getString("Stock"),
+                        b.getJSONObject(i).getString("Price")
+                ));
         } catch (Exception e) {
             Log.e("Book.list()", "JSONArray error");
         }
@@ -80,6 +88,7 @@ public class Book extends HashMap<String, String> {
             InputStream ins = conn.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(ins);
             ins.close();
+
             return bitmap;
         } catch (Exception e) {
             Log.e("Book.getPhoto()", "Bitmap error");

@@ -10,17 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<String> {
+public class MyAdapter extends ArrayAdapter<Book> {
 
-    private List<String> items;
+    private ArrayList<Book> books;
     int resource;
 
-    public MyAdapter(Context context, int resource, List<String> items) {
-        super(context, resource, items);
+    public MyAdapter(Context context, int resource, ArrayList<Book> books) {
+        super(context, resource, books);
         this.resource = resource;
-        this.items = items;
+        this.books = books;
     }
 
     @Override
@@ -28,13 +29,12 @@ public class MyAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        String eid = items.get(position);
+
+        Book eid = books.get(position);
 
         if (eid != null) {
             TextView e = (TextView) v.findViewById(R.id.textView);
-            e.setText(Book.getTitle(eid));
-            //ImageView image = (ImageView) v.findViewById(R.id.imageView2);
-            //image.setImageBitmap(Employee.getPhoto(true, eid));
+            e.setText(eid.get("Title"));
         }
         return v;
     }
