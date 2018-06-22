@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Book extends HashMap<String, Object> {
+public class Book extends HashMap<String, String> {
 
     final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
-    //final static String imageURL = "http://172.27.240.226:8090/workhere/photo";
+    final static String imageURL = "http://172.17.253.129/GetFreshBooks/images";
 
     public Book(String bookId, String title, String catId, String isbn,
                 String author, String stock, String price) {
@@ -55,9 +55,10 @@ public class Book extends HashMap<String, Object> {
         return(null);
     }
 
-/*    public static Book getEmp(String eid) {
-        JSONObject b = JSONParser.getJSONFromUrl(baseURL + "Book/" + eid);
+    public static Book getBook(String bid) {
         try {
+            JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL+"LoadSingle/"+bid);
+            JSONObject b = a.getJSONObject(0);
             return new Book(
                     b.getString("BookID"),
                     b.getString("Title"),
@@ -70,12 +71,11 @@ public class Book extends HashMap<String, Object> {
             Log.e("Book.getEmp()", "JSONArray error");
         }
         return(null);
-    }*/
+    }
 
-/*    public static Bitmap getPhoto(boolean thumbnail, String id) {
+   public static Bitmap getPhoto(String ISBN) {
         try {
-            URL url = (thumbnail ? new URL(String.format("%s/%s-s.jpg",imageURL, id)) :
-                    new URL(String.format("%s/%s.jpg",imageURL, id)));
+            URL url = new URL(String.format("%s/%s.jpg",imageURL, ISBN));
             URLConnection conn = url.openConnection();
             InputStream ins = conn.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(ins);
@@ -85,5 +85,5 @@ public class Book extends HashMap<String, Object> {
             Log.e("Book.getPhoto()", "Bitmap error");
         }
         return(null);
-    }*/
+    }
 }
