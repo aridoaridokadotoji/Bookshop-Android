@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Workshop6</string>
-    <string name="name">Name</string>
-    <string name="eid">Emp id</string>
-    <string name="salary">Salary</string>
-    <string name="address">Address</string>
+    <string name="app_name">GetFreshBooks</string>
+    <string name="title">Title</string>
+    <string name="bookid">Booking ID</string>
+    <string name="categoryid">Category ID</string>
+    <string name="isbn">ISBN</string>
+    <string name="author">Author</string>
+    <string name="stock">Stock</string>
+    <string name="price">Price</string>
 </resources>
