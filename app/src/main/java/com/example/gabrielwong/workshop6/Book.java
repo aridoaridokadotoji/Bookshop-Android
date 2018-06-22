@@ -35,8 +35,7 @@ public class Book extends HashMap<String, String> {
         List<String> list = new ArrayList<String>();
 
         try {
-            JSONObject a = JSONParser.getJSONFromUrl(baseURL);
-            JSONArray b = a.getJSONArray("data");
+            JSONArray b = JSONParser.getJSONArrayFromUrl(baseURL);
             for (int i=0; i<b.length(); i++)
                 list.add(b.getJSONObject(i).getString("Title"));
         } catch (Exception e) {
