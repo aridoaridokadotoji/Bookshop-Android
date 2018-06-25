@@ -8,7 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -58,7 +64,7 @@ public class Book extends HashMap<String, String> {
             JSONObject c= b.getJSONObject(0);
             return c.getString("Title");
         } catch (Exception e) {
-            Log.e("Book.getEmp()", "JSONArray or JSONObject error");
+            Log.e("Book.getTitle()", "JSONArray or JSONObject error");
         }
         return(null);
     }
@@ -76,14 +82,14 @@ public class Book extends HashMap<String, String> {
                     b.getString("Stock"),
                     b.getString("Price"));
         } catch (Exception e) {
-            Log.e("Book.getEmp()", "JSONArray error");
+            Log.e("Book.getBook()", "JSONArray error");
         }
         return(null);
     }
 
    public static Bitmap getPhoto(String ISBN) {
         try {
-            URL url = new URL(String.format("%s/%s.jpg",imageURL, ISBN));
+            URL url = new URL(String.format("%s/%s.jpg", imageURL, ISBN));
             URLConnection conn = url.openConnection();
             InputStream ins = conn.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(ins);
@@ -94,5 +100,22 @@ public class Book extends HashMap<String, String> {
             Log.e("Book.getPhoto()", "Bitmap error");
         }
         return(null);
+    }
+
+    public static String updateBook(Book book) {
+        JSONObject jbook = new JSONObject();
+        try {
+            jbook.put("BookID", Integer.parseInt(book.get("BookID")));
+            jbook.put("Title", book.get("Title"));
+            jbook.put("CategoryID", Integer.parseInt(book.get("CategoryID")));
+            jbook.put("ISBN", book.get("ISBN"));
+            jbook.put("Author", book.get("Author"));
+            jbook.put("Stock", book.get("Stock"));
+            jbook.put("Price", Double.parseDouble(book.get("Price")));
+        } catch (Exception e) {
+            Log.e("Book.updateBook()", "Update error");
+        }
+        String result = JSONParser.postStream(baseURL+"Save", jbook.toString());
+        return result;
     }
 }
