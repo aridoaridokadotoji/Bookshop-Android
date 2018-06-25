@@ -23,8 +23,8 @@ import java.util.List;
 
 public class Book extends HashMap<String, String> {
 
-    final static String baseURL = "http://192.168.1.29/GetFreshBooks/Inventory/"; //TODO: Change according to server
-    final static String imageURL = "http://192.168.1.29/GetFreshBooks/images";
+    final static String baseURL = "http://172.17.104.184/GetFreshBooks/Inventory/"; //TODO: Change according to server
+    final static String imageURL = "http://172.17.104.184/GetFreshBooks/images";
 
     public Book(String bookId, String title, String catId, String isbn,
                 String author, String stock, String price) {
