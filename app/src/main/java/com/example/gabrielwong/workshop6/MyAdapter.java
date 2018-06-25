@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +60,11 @@ public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
         if (b != null) {
             TextView tv = (TextView) v.findViewById(R.id.TextView);
             tv.setText(b.get("Title"));
+            TextView tv9= (TextView) v.findViewById(R.id.TextView9);
+            tv9.setText("$ "+b.get("Price"));
+            ImageView image = (ImageView) v.findViewById(R.id.imageView2);
+          image.setImageBitmap(Book.getPhoto(b.get("ISBN")));
+
         }
         return v;
     }

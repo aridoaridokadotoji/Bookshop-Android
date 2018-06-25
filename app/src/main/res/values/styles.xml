@@ -1,8 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <item name="android:colorBackground">@color/white_opaque</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
     </style>
 
+    <style name="MyActionBar" parent="@android:style/Widget.Material.Light.ActionBar">
+        <item name="android:background">@color/title_background</item>
+        <item name="android:titleTextStyle">@style/TitleText</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textColor">@color/pitch_black</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
 </resources>

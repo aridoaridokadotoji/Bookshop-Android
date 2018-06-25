@@ -7,4 +7,6 @@
     <string name="author">Author</string>
     <string name="stock">Stock</string>
     <string name="price">Price</string>
+
+    <color name="white">#FFFFFF</color>
 </resources>
