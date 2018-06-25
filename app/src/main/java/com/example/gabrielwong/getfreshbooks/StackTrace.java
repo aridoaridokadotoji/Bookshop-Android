@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

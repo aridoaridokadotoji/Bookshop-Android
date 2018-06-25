@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 import android.app.Activity;
 import android.content.Intent;

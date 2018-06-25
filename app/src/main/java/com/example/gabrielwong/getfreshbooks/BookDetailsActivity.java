@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,9 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-
- public class BookDetailsActivity extends Activity {
+public class BookDetailsActivity extends Activity {
 
      int []ids = {R.id.editText1, R.id.editText2, R.id.editText3,
              R.id.editText4, R.id.editText5, R.id.editText6};

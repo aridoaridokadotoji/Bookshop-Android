@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 
 import android.app.Activity;
@@ -12,11 +12,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
 
