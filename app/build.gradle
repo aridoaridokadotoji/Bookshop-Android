@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.gabrielwong.workshop6"
+        applicationId "com.example.gabrielwong.getfreshbooks"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -24,4 +24,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:design:27.1.1'
 }

@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 
 import android.app.Activity;
@@ -9,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
 
@@ -57,6 +58,12 @@ public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
         if (b != null) {
             TextView tv = (TextView) v.findViewById(R.id.TextView);
             tv.setText(b.get("Title"));
+            TextView tv9= (TextView) v.findViewById(R.id.TextView9);
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            tv9.setText(nf.format(Double.parseDouble(b.get("Price"))));
+            ImageView image = (ImageView) v.findViewById(R.id.imageView2);
+          image.setImageBitmap(Book.getPhoto(b.get("ISBN")));
+
         }
         return v;
     }

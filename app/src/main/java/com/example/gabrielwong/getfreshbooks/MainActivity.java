@@ -1,4 +1,4 @@
-package com.example.gabrielwong.workshop6;
+package com.example.gabrielwong.getfreshbooks;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,19 +30,7 @@ public class MainActivity extends Activity {
         ListView list = (ListView) findViewById(R.id.listview1);
         EditText filter = (EditText) findViewById(R.id.filter);
 
-/*        ArrayList<String> people = new ArrayList<>();
-        people.add("The Trials of Apollo Book Two The Dark Prophecy");
-        people.add("The Wonderful Things You Will Be");
-        people.add("A Court of Wings and Ruin");
-        people.add("Lord of Shadows (The Dark Artifices)");
-        people.add("The Day the Crayons Quit");
-        people.add("If Animals Kissed Good Night");*/
 
-
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, books);
-        setListAdapter(adapter);
-        MyAdapter adapter = new MyAdapter(this, R.layout.row, books);*/
 
         adapter = new MyAdapter(this, R.layout.row, books);
         list.setAdapter(adapter);
