@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,8 @@ public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
             TextView tv = (TextView) v.findViewById(R.id.TextView);
             tv.setText(b.get("Title"));
             TextView tv9= (TextView) v.findViewById(R.id.TextView9);
-            tv9.setText("$ "+b.get("Price"));
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            tv9.setText(nf.format(Double.parseDouble(b.get("Price"))));
             ImageView image = (ImageView) v.findViewById(R.id.imageView2);
           image.setImageBitmap(Book.getPhoto(b.get("ISBN")));
 
