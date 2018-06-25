@@ -10,11 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
 
  public class BookDetailsActivity extends Activity {
 
      int []ids = {R.id.editText1, R.id.editText2, R.id.editText3,
-             R.id.editText4, R.id.editText5, R.id.editText6, R.id.editText7};
+             R.id.editText4, R.id.editText5, R.id.editText6};
+     Book book = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,43 +39,47 @@ import android.widget.ImageView;
             @Override
             protected void onPostExecute(Book result) {
                 show(result);
+                book = result;
             }
         }.execute(bookid);
 
-        Button button3 = (Button) findViewById(R.id.button3);
+        Button button3 = (Button) findViewById(R.id.updatebutton);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String []values = new String[ids.length];
+                EditText stock = (EditText) findViewById(R.id.editText5);
+                String stockVal = stock.getText().toString();
 
-                for (int i=0; i<ids.length; i++) {
-                    EditText e = (EditText) findViewById(ids[i]);
-                    values[i] = e.getText().toString();
-                }
+                EditText price = (EditText) findViewById(R.id.editText6);
+                String priceVal = price.getText().toString();
 
-                Book newBook = new Book (
-                        values[0],
-                        values[1],
-                        values[2],
-                        values[3],
-                        values[4],
-                        values[5],
-                        values[6]
-                );
+                book.put("Stock", stockVal);
+                book.put("Price", priceVal);
 
-                Book.updateBook(newBook);
+                Book.updateBook(book);
+                Toast.makeText(BookDetailsActivity.this,"Updated", Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
 
-    void show(Book book) {
-        String []keys = {"BookID", "Title", "CategoryID", "ISBN", "Author", "Stock", "Price"};
 
-        for (int i=0; i<keys.length; i++) {
-            EditText e = (EditText) findViewById(ids[i]);
-            e.setText(book.get(keys[i]));
-        }
+    void show(Book book) {
+
+        TextView e1 = (TextView) findViewById(R.id.editText1);
+        e1.setText(book.get("BookID"));
+        TextView e2 = (TextView) findViewById(R.id.editText2);
+        e2.setText(book.get("Title"));
+        TextView e3 = (TextView) findViewById(R.id.editText3);
+        e3.setText(book.get("ISBN"));
+        TextView e4 = (TextView) findViewById(R.id.editText4);
+        e4.setText(book.get("Author"));
+        EditText e5 = (EditText) findViewById(R.id.editText5);
+        e5.setText(book.get("Stock"));
+        EditText e6 = (EditText) findViewById(R.id.editText6);
+        e6.setText(book.get("Price"));
 
         String isbn = book.get("ISBN");
 

@@ -102,6 +102,7 @@ public class Book extends HashMap<String, String> {
         return(null);
     }
 
+    // TODO: Change this to return boolean instead for easy validation
     public static String updateBook(Book book) {
         JSONObject jbook = new JSONObject();
         try {
