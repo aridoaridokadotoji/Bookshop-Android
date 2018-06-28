@@ -32,6 +32,7 @@ public class MyAdapter extends ArrayAdapter<Book> implements Filterable {
         this.books = books;
     }
 
+    
     @Override
     public int getCount() {
         return filteredData.size();
